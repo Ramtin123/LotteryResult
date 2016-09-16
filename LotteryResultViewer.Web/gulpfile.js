@@ -25,7 +25,7 @@ function GulpFactory(env) {
             vendor: this.public + 'vendors/styles/',
             application: this.public + 'application/styles/'
         };
-        this.Views = './Views/Shared';
+        this.Views = './Views/Shared/';
         this.WatchInjectPlaces = ['./public/application/scripts/**/*',
             './public/application/styles/**/*',
             './public/vendors/scripts/**/*',
@@ -189,6 +189,6 @@ gulp.task('build:dev', ['Inject:DEV']);
 
 gulp.task('build:prod', ['Inject:PROD', 'CopyAssets']);
 
-//gulp.task('serv:dev', ['build:dev', 'watch:dev'], GulpFactory().Serv);
+gulp.task('develop', ['build:dev', 'watch:dev']);
 
 //gulp.task('serv:prod', ['build:prod'], GulpFactory('PROD').Serv);

@@ -75,6 +75,7 @@ LotteryResult.UI.Angular2/coverage/
 LotteryResult.UI.Angular2/build/
 LotteryResult.UI.Angular2/typings/
 LotteryResultViewer.Web/node_modules/
+LotteryResultViewer.Web/Views/Shared/_Layout.cshtml
 
 
 

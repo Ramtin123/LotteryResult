@@ -36,4 +36,4 @@
     
     
     
-})(angular.module('districtmanagerapp'));
+})(angular.module('lotteryresult'));
