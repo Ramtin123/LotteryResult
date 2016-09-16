@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -198,9 +199,36 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="configuration.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="gulpfile.js" />
+    <Content Include="public\application\scripts\app.js" />
+    <Content Include="public\application\scripts\common\app.js" />
+    <Content Include="public\application\scripts\controllers.js" />
+    <Content Include="public\application\scripts\directives.js" />
+    <Content Include="public\application\scripts\services.js" />
+    <Content Include="public\application\styles\GridUi.css" />
+    <Content Include="public\application\styles\menu.css" />
+    <Content Include="public\application\styles\Style.css" />
+    <Content Include="public\application\styles\ui-grid.svg" />
+    <Content Include="public\prod\angular-ui-grid\ui-grid.svg" />
+    <Content Include="public\vendors\scripts\angular-cookies.js" />
+    <Content Include="public\vendors\scripts\angular-route.js" />
+    <Content Include="public\vendors\scripts\angular-ui-grid\ui-grid.min.js" />
+    <Content Include="public\vendors\scripts\angular.js" />
+    <Content Include="public\vendors\scripts\bootstrap.min.js" />
+    <Content Include="public\vendors\scripts\jquery-1.9.1.min.js" />
+    <Content Include="public\vendors\scripts\lodash.js" />
+    <Content Include="public\vendors\scripts\pdfmake.js" />
+    <Content Include="public\vendors\scripts\ui-bootstrap-tpls.min.js" />
+    <Content Include="public\vendors\scripts\ui-bootstrap.min.js" />
+    <Content Include="public\vendors\scripts\vfs_fonts.js" />
+    <Content Include="public\vendors\styles\angular-ui-grid\ui-grid.css" />
+    <Content Include="public\vendors\styles\angular-ui-grid\ui-grid.svg" />
+    <Content Include="public\vendors\styles\bootstrap-theme.css" />
+    <Content Include="public\vendors\styles\bootstrap.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -212,23 +240,30 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Shared\_LayoutBuild.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
+    <Folder Include="public\application\Images\" />
+    <Folder Include="public\application\templates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
+    <Content Include="package.json" />
     <None Include="Project_Readme.html" />
+    <Content Include="public\application\styles\ui-grid.ttf" />
+    <Content Include="public\application\styles\ui-grid.woff" />
+    <Content Include="public\prod\angular-ui-grid\ui-grid.eot" />
+    <Content Include="public\prod\angular-ui-grid\ui-grid.ttf" />
+    <Content Include="public\prod\angular-ui-grid\ui-grid.woff" />
+    <Content Include="public\vendors\styles\angular-ui-grid\ui-grid.eot" />
+    <Content Include="public\vendors\styles\angular-ui-grid\ui-grid.ttf" />
+    <Content Include="public\vendors\styles\angular-ui-grid\ui-grid.woff" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLayer\LotteryResultViewer.DataLayer.csproj">
@@ -271,6 +306,10 @@
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
