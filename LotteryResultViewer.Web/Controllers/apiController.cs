@@ -1,13 +1,7 @@
 ﻿using LotteryResultViewer.DataLayer.Repositories;
-using LotteryResultViewer.WebApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Cors;
 
 namespace LotteryResultViewer.WebApi.Controllers
 {
@@ -15,7 +9,6 @@ namespace LotteryResultViewer.WebApi.Controllers
     {
         Task<IHttpActionResult> LotteryWinners(int LotteryProgramId);
     }
-    [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     [RoutePrefix("api")]
     public class apiController : ApiController, IApiController
     {

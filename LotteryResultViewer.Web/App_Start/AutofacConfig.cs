@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace LotteryResultViewer.WebApi
+namespace LotteryResultViewer.Web
 {
     public static class AutofacConfig
     {
