@@ -1,3 +1,4 @@
 ﻿module.exports={
-    Version:'1'
+    Version: '1',
+    Port: 58775
 }

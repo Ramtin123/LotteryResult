@@ -10,6 +10,8 @@ var es = require('event-stream');
 var flatten = require('gulp-flatten');
 var watch = require('gulp-watch');
 var config = require('./configuration');
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
 
 function GulpFactory(env) {
 
@@ -138,11 +140,16 @@ function GulpFactory(env) {
         }
     }
 
-    //GulpFactoryConstructor.prototype._serv = function () {
-    //    return function () {
-    //        //server.run('app.js');
-    //    }
-    //}
+    GulpFactoryConstructor.prototype._serv = function () {
+        return function () {
+            browserSync({
+                server: {
+                    baseDir: './',
+                    port: config.Port
+                }
+            });
+        }
+    }
 
     var gulpObj = new GulpFactoryConstructor();
 
@@ -152,7 +159,7 @@ function GulpFactory(env) {
         ConcatCss: gulpObj._concatCss(),
         UglyScripts: gulpObj._uglyScripts(),
         UglyCss: gulpObj._uglyCss(),
-       // Serv: gulpObj._serv(),
+        Serv: gulpObj._serv(),
         Inject: gulpObj._inject(),
         Watch: gulpObj._watch()
     }
@@ -191,4 +198,8 @@ gulp.task('build:prod', ['Inject:PROD', 'CopyAssets']);
 
 gulp.task('develop', ['build:dev', 'watch:dev']);
 
-//gulp.task('serv:prod', ['build:prod'], GulpFactory('PROD').Serv);
+gulp.task('serve:dev', ['build:dev'], GulpFactory().Serv);
+
+gulp.task('serve:prod', ['build:prod'], GulpFactory().Serv);
+
+

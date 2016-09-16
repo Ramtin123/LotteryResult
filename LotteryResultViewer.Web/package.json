@@ -12,6 +12,7 @@
     "lodash": "^4.2.1"
   },
   "devDependencies": {
+    "browser-sync": "^2.16.0",
     "del": "^2.2.0",
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
