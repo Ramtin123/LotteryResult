@@ -69,6 +69,9 @@ artifacts/
 *.svclog
 *.scc
 
+LotteryResult.UI.Angular2/node_modules/
+LotteryResult.UI.Angular2/dist
+
 # Chutzpah Test files
 _Chutzpah*
 
