@@ -213,6 +213,7 @@
     <Content Include="public\application\styles\menu.css" />
     <Content Include="public\application\styles\Style.css" />
     <Content Include="public\application\styles\ui-grid.svg" />
+    <Content Include="public\application\templates\_resultViewer.html" />
     <Content Include="public\prod\angular-ui-grid\ui-grid.svg" />
     <Content Include="public\vendors\scripts\angular-cookies.js" />
     <Content Include="public\vendors\scripts\angular-route.js" />
@@ -247,7 +248,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="public\application\Images\" />
-    <Folder Include="public\application\templates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

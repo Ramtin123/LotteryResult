@@ -143,9 +143,10 @@ function GulpFactory(env) {
     GulpFactoryConstructor.prototype._serv = function () {
         return function () {
             browserSync({
+                port: config.Port,
                 server: {
                     baseDir: './',
-                    port: config.Port
+                    
                 }
             });
         }
