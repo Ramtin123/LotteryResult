@@ -1,5 +1,5 @@
 ﻿describe('resultViewerCtrl', function () {
-    var $controller, $rootScope, $scope, apiServices = {}, $q, gridUiFactory,gridUiFactoryBuild, programs, winners, gridOptions, deferred, getWinners, generateController,resolve,reject,controller;
+    var $controller, $rootScope, $scope, apiServices = {}, $q, gridUiFactory,gridUiFactoryData={}, programs, winners, gridOptions, deferred, getWinners, generateController,resolve,reject,controller;
     beforeEach(module('lotteryresult'));
 
     beforeEach(inject(function (_$controller_, _$rootScope_, _$q_) {
@@ -29,11 +29,15 @@
 
         };
         gridUiFactory = (data) => {
+            gridUiFactoryData.data=data;
             return {
-                Build: jasmine.createSpy("gridUiFactoryBuild spy")
+                Build: (scope,val)=>{
+                    gridUiFactoryData.scope=scope;
+                    gridUiFactoryData.scopeVar=val;
+                
+                }
             }
         }
-        spyOn()
         generateController = () => {
             return $controller('resultViewerCtrl', { $scope: $scope, apiServices: apiServices, gridUiFactory: gridUiFactory });
         }
@@ -70,11 +74,21 @@
         expect($scope.Status.LoadingPrograms).not.toBe(true);
     });   
 
-    it('LotteryWinners can be loaded successfuly', function () {
+    it('Lottery winners can be loaded successfuly', function () {
         let programId=programs[0].Id;
         $scope.lotteryProgramChanged(programId);
         resolve(getWinners(programId));
         expect(apiServices.GetLotteryWinners).toHaveBeenCalledWith(programId);
+    }); 
+    
+    it('grid can be loaded by Lottery winners', function () {
+        let programId=programs[0].Id;
+        $scope.lotteryProgramChanged(programId);
+        var winners=getWinners(programId);
+        resolve(winners);
+        expect(gridUiFactoryData.data).toBe(winners);
+        expect(gridUiFactoryData.scope).toBe($scope);
+        expect(gridUiFactoryData.scopeVar).toBe('LotteryWinners');
     });  
         
 });
