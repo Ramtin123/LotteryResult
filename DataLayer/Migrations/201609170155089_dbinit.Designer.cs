@@ -13,7 +13,7 @@ namespace LotteryResultViewer.DataLayer.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201609131427005_dbinit"; }
+            get { return "201609170155089_dbinit"; }
         }
         
         string IMigrationMetadata.Source

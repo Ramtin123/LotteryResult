@@ -42,25 +42,9 @@ namespace LotteryResultViewer.DataLayer.Repositories
                 {
                     _context.SetModified(entity);
                 };
-                foreach (var winner in entity.LotteryWinners)
-                {
-                    if (winner.Id == default(int))
-                    {
-                        _context.SetAdd(winner);
-                    }
-                    else
-                    {
-                        _context.SetModified(winner);
-                    }
-                }
                 _context.SaveChanges();
             });
             
-        }
-
-        public async Task<List<LotteryProgram>> Search(Expression<Func<LotteryProgram, bool>> predicate)
-        {
-            return await _context.LotteryPrograms.Include(i=>i.LotteryWinners).Where(predicate).ToListAsync();
         }
         
         public void Dispose()

@@ -39,7 +39,7 @@
                     data: data,
                     enableFiltering: true,
                     enableSorting: true,
-                    onRegisterApi: function ($scope) {
+                    onRegisterApi: function (gridApi) {
                         $scope[(scopeVar ? scopeVar : 'grid') + 'Api'] = gridApi;
                     },
                     columnDefs: [

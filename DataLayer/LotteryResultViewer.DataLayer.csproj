@@ -54,9 +54,9 @@
     <Compile Include="Context\LotteryResultContext.cs" />
     <Compile Include="Entities\LotteryProgram.cs" />
     <Compile Include="Entities\LotteryWinner.cs" />
-    <Compile Include="Migrations\201609131427005_dbinit.cs" />
-    <Compile Include="Migrations\201609131427005_dbinit.Designer.cs">
-      <DependentUpon>201609131427005_dbinit.cs</DependentUpon>
+    <Compile Include="Migrations\201609170155089_dbinit.cs" />
+    <Compile Include="Migrations\201609170155089_dbinit.Designer.cs">
+      <DependentUpon>201609170155089_dbinit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,8 +69,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609131427005_dbinit.resx">
-      <DependentUpon>201609131427005_dbinit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609170155089_dbinit.resx">
+      <DependentUpon>201609170155089_dbinit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
