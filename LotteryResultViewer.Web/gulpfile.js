@@ -12,6 +12,7 @@ var watch = require('gulp-watch');
 var config = require('./configuration');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
+var Server = require('karma').Server;
 
 function GulpFactory(env) {
 
@@ -182,6 +183,13 @@ gulp.task('CopyAssets', function () {
         .pipe(gulp.dest(gulpLib.publicProd));
 });
 
+gulp.task('RunUnitTests', function (done) {
+    new Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, done).start();
+});
+
 gulp.task('watch:dev', GulpFactory().Watch);
 
 gulp.task('watch:prod', GulpFactory('PROD').Watch);
@@ -194,9 +202,9 @@ gulp.task('Inject:DEV', GulpFactory().Inject);
 
 gulp.task('Inject:PROD', ['UglyScripts', 'UglyCss'], GulpFactory('PROD').Inject);
 
-gulp.task('build:dev', ['Inject:DEV']);
+gulp.task('build:dev', ['Inject:DEV', 'RunUnitTests']);
 
-gulp.task('build:prod', ['Inject:PROD', 'CopyAssets']);
+gulp.task('build:prod', ['Inject:PROD', 'CopyAssets','RunUnitTests'] );
 
 gulp.task('develop', ['build:dev', 'watch:dev']);
 
