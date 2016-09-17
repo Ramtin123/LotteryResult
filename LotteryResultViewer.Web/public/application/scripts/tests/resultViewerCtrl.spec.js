@@ -1,5 +1,5 @@
 ﻿describe('resultViewerCtrl', function () {
-    var $controller, $rootScope, $scope, apiServices = {}, $q, gridUiFactory, programs, winners, gridOptions, deferred, getWinners, generateController,resolve,reject,controller;
+    var $controller, $rootScope, $scope, apiServices = {}, $q, gridUiFactory,gridUiFactoryBuild, programs, winners, gridOptions, deferred, getWinners, generateController,resolve,reject,controller;
     beforeEach(module('lotteryresult'));
 
     beforeEach(inject(function (_$controller_, _$rootScope_, _$q_) {
@@ -21,15 +21,19 @@
         });
 
         apiServices.GetLotteryWinners = (programId) => { };
-        
+        spyOn(apiServices, 'GetLotteryWinners').and.callFake(() => {
+            deferred = $q.defer();
+            return deferred.promise;
+        });
+        gridUiFactoryBuild=(scope, varname) => {
+
+        };
         gridUiFactory = (data) => {
             return {
-                Build: (scope, varname) => {
-
-                }
+                Build: jasmine.createSpy("gridUiFactoryBuild spy")
             }
-
         }
+        spyOn()
         generateController = () => {
             return $controller('resultViewerCtrl', { $scope: $scope, apiServices: apiServices, gridUiFactory: gridUiFactory });
         }
@@ -65,5 +69,12 @@
         resolve(programs);
         expect($scope.Status.LoadingPrograms).not.toBe(true);
     });   
+
+    it('LotteryWinners can be loaded successfuly', function () {
+        let programId=programs[0].Id;
+        $scope.lotteryProgramChanged(programId);
+        resolve(getWinners(programId));
+        expect(apiServices.GetLotteryWinners).toHaveBeenCalledWith(programId);
+    });  
         
 });
