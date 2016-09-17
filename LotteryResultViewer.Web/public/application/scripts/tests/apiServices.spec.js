@@ -1,10 +1,13 @@
 ﻿describe('Api services test', () => {
-    var apiServices, $httpBackend, locationCode;
+    var apiServices, $httpBackend, locationCode,thenFns;
     beforeEach(module('lotteryresult'));
     beforeEach(inject(($injector, _apiServices_) => {
         apiServices = _apiServices_;
         $httpBackend = $injector.get('$httpBackend');
-        
+        thenFns={
+            success:(result)=>{},
+            error:(err)=>{}
+        }
     }));
     it('Test GetLotteryPrograms', (done) => {
         $httpBackend
@@ -31,5 +34,36 @@
         });
         $httpBackend.flush();
     });
+
+    it('GetLotteryPrograms can pass error', (done) => {
+        var errorMessage={err:'Error1'}
+        $httpBackend
+            .when('GET', '/api/LotteryPrograms')
+            .respond(500,errorMessage );
+        spyOn(thenFns,'error');
+        apiServices.GetLotteryPrograms().then(thenFns.success,thenFns.error).finally(()=>{
+            expect(thenFns.error).toBeCalledWith(errorMessage);
+            done();
+        });
+        $httpBackend.flush();
+       
+    });
+
+    it('GetLotteryWinners can pass error', (done) => {
+        var errorMessage={err:'Error1'}
+        var programId = 123;
+        $httpBackend
+             .when('GET', `/api/LotteryWinners/${programId}`)
+              .respond(500,errorMessage );
+        spyOn(thenFns,'error');
+        apiServices.GetLotteryWinners(programId).then(thenFns.success,thenFns.error).finally(()=>{
+            expect(thenFns.error).toBeCalledWith(errorMessage);
+            done();
+        });
+        $httpBackend.flush();
+    });
+
+
+
 
 });
