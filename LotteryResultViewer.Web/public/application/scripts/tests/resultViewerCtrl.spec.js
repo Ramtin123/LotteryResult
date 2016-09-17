@@ -81,8 +81,8 @@
         expect(apiServices.GetLotteryWinners).toHaveBeenCalledWith(programId);
     }); 
     
-    it('grid can be loaded by Lottery winners', function () {
-        let programId=programs[0].Id;
+    it('grid can be loaded by Lotterywinners data', function () {
+        let programId=programs[1].Id;
         $scope.lotteryProgramChanged(programId);
         var winners=getWinners(programId);
         resolve(winners);
@@ -90,5 +90,20 @@
         expect(gridUiFactoryData.scope).toBe($scope);
         expect(gridUiFactoryData.scopeVar).toBe('LotteryWinners');
     });  
+
+    it('Lotterywinners Status Change', function () {
+        expect($scope.Status.LoadingWinners).not.toBe(true);
+        $scope.lotteryProgramChanged(1);
+        expect($scope.Status.LoadingWinners).toBe(true);
+        resolve(getWinners(1));
+        expect($scope.Status.LoadingWinners).toBe(false);
+    });
+
+    it('Lotterywinners Loading with error', function () {
+        expect($scope.Status.Error).not.toBeDefined();
+        $scope.lotteryProgramChanged(1);
+        reject({});
+        expect($scope.Status.Error).toBeDefined();
+    });
         
 });
