@@ -204,11 +204,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="gulpfile.js" />
+    <Content Include="karma.conf.js" />
     <Content Include="public\application\scripts\app.js" />
     <Content Include="public\application\scripts\common\app.js" />
     <Content Include="public\application\scripts\controllers.js" />
     <Content Include="public\application\scripts\directives.js" />
     <Content Include="public\application\scripts\services.js" />
+    <Content Include="public\application\scripts\tests\apiServices.spec.js" />
     <Content Include="public\application\styles\GridUi.css" />
     <Content Include="public\application\styles\menu.css" />
     <Content Include="public\application\styles\Style.css" />

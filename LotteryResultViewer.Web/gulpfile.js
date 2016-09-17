@@ -49,7 +49,8 @@ function GulpFactory(env) {
             this.ScriptsPath.vendor + '**/*.js',
             this.ScriptsPath.applicatin + 'common/*.js',
             this.ScriptsPath.applicatin + 'common/**/*.js',
-            this.ScriptsPath.applicatin + '**/*.js'
+            this.ScriptsPath.applicatin + '**/*.js',
+            '!'+this.ScriptsPath.applicatin + '**/*spec.js'
         ];
     }
 
