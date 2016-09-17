@@ -16,5 +16,16 @@
         var [result1,result2,result3]=scope[optionsName].data;
         expect(result1).toBe(data[0]);
     });
-   
+    it('it can generate Api properly', () => {
+        var gridapi=()=>{};
+        scope[optionsName].onRegisterApi(gridapi);
+        expect(scope[apiName]).toBeDefined();
+        expect(typeof scope[apiName]).toBe('function');
+    });
+    it('it can generate columnDefs properly', () => {
+        let columnDefs=scope[optionsName].columnDefs;
+        expect(columnDefs).toBeDefined();
+        expect(_.some(columnDefs,{'name':'Name'})).toBeDefined();
+        expect(_.some(columnDefs,{'field':'Name'})).toBeDefined();
+    });
 });
