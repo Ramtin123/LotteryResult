@@ -5,12 +5,8 @@ using System.Web.Http;
 
 namespace LotteryResultViewer.WebApi.Controllers
 {
-    public interface IApiController
-    {
-        Task<IHttpActionResult> LotteryWinners(int LotteryProgramId);
-    }
     [RoutePrefix("api")]
-    public class apiController : ApiController, IApiController
+    public class apiController : ApiController
     {
         private readonly ILotteryProgramRepository _lotteryProgramRepository;
         private readonly ILotterWinnersRepository _lotterWinnersRepository;

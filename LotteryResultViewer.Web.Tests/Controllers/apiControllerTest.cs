@@ -38,9 +38,10 @@ namespace LotteryResultViewer.Tests.Controllers
             [TestMethod]
             public async Task LotteryWinnersTest()
             {
-                _lotterWinnersRepository.FindByProgramId(Arg.Any<int>()).Returns(_winners);
-                var result =await  _apiController.LotteryWinners(1); 
+                _lotterWinnersRepository.FindByProgramId(Arg.Any<int>()).Returns(Task.FromResult<IList<LotteryWinner>>(_winners)) ;
+                var result =await  _apiController.LotteryWinners(1) as OkNegotiatedContentResult<IList<LotteryWinner>>; 
                 await _lotterWinnersRepository.Received().FindByProgramId(Arg.Is(1));
+                result.Content.Count().Should().Be(_winners.Count());
             }
             [TestMethod]
             public async Task LotteryProgramsTest()
