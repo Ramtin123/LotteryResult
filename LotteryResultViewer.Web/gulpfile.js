@@ -1,4 +1,4 @@
-/// <binding BeforeBuild='default' />
+
 var gulp = require('gulp');
 var inject = require('gulp-inject');
 var concat = require('gulp-concat');

@@ -27,7 +27,7 @@ namespace LotteryResultViewer.DataLayer.Repositories
 
         public async Task<IList<LotteryWinner>> FindByProgramId(int ProgramId)
         {
-            return await _context.LotteryWinners.Where(w=>w.LotteryProgram.Id.Equals(ProgramId)).ToListAsync();
+            return await Task.FromResult(_context.LotteryWinners.Where(w=>w.LotteryProgram.Id.Equals(ProgramId)).ToList());
         }
 
         public async Task AddOrUpdate(LotteryWinner entity)

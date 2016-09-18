@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LotteryResultViewer.DataLay
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LotteryResultViewer.Web", "LotteryResultViewer.Web\LotteryResultViewer.Web.csproj", "{38682802-D55F-4571-A27E-F3E9AD5FA409}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LotteryResultViewer.Web.Tests", "LotteryResultViewer.Web.Tests\LotteryResultViewer.Web.Tests.csproj", "{EECAB32A-F266-40A5-8D88-AD3F07360D5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LotteryResultViewer.Tests", "LotteryResultViewer.Web.Tests\LotteryResultViewer.Tests.csproj", "{EECAB32A-F266-40A5-8D88-AD3F07360D5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
