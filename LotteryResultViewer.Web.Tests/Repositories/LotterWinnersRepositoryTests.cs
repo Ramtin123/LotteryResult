@@ -43,10 +43,10 @@ namespace LotteryResultViewer.Tests.Repositories
 
         }
         [TestMethod]
-        public async Task GetWinnersTest()
+        public async Task GetAllWinners()
         {
             var result=await _lotterWinnersRepository.FindByProgramId(1);
-            //result.Count().Should().Be(_winners.Count());
+            result.Count().Should().Be(2);
         }
 
 
