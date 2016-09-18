@@ -7,7 +7,7 @@
             <div class="row">
                 <strong class="col-sm-4">Please select the lottery program:</strong>
                 <div class="col-sm-4">
-                    <select ng-if="!Status.LoadingPrograms" class="form-control" ng-model="data.programId" name="lotteryprogram" ng-change="lotteryProgramChanged(data.programId)" ng-options="lotteryprogram.Id as lotteryprogram.ProgramName for lotteryprogram in LotteryPrograms">
+                    <select ng-if="!Status.LoadingPrograms" class="form-control" ng-model="data.programId" id="lotteryprogram" name="lotteryprogram" ng-change="lotteryProgramChanged(data.programId)" ng-options="lotteryprogram.Id as lotteryprogram.ProgramName for lotteryprogram in LotteryPrograms">
                         <option value="" selected>Lottery Programs</option>
                     </select>
                     <i ng-if="Status.LoadingPrograms" class="fa fa-3x fa-refresh fa-spin"></i>

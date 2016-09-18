@@ -1,3 +1,4 @@
+/// <binding BeforeBuild='build:dev' />
 
 var gulp = require('gulp');
 var inject = require('gulp-inject');

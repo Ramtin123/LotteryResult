@@ -7,11 +7,8 @@ module.exports = function (config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
-
+    
 
     // list of files / patterns to load in the browser
     files: [
@@ -28,6 +25,7 @@ module.exports = function (config) {
       'public/vendors/scripts/ui-bootstrap-tpls.min.js',
       'public/vendors/scripts/lodash.js',
       'public/vendors/scripts/angular-ui-grid/ui-grid.min.js',
+      'public/application/templates/**/*.html',
       'public/application/scripts/**/*.js',
       'public/application/scripts/**/*spec.js'
     ],
@@ -41,6 +39,10 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        'public/application/templates/**/*.html': ['ng-html2js']
+    },
+    ngHtml2JsPreprocessor: {
+        moduleName: 'templates'
     },
 
 
