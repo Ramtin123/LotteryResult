@@ -19,6 +19,7 @@ namespace LotteryResultViewer.Tests.Repositories
         private ILotteryResultContext _lotteryResultContext;
         private LotterWinnersRepository _lotterWinnersRepository;
         private List<LotteryProgram> _programs;
+        private IQueryable<LotteryWinner> _winners;
         [TestInitialize()]
         public void TestInitialize()
         {
@@ -27,7 +28,7 @@ namespace LotteryResultViewer.Tests.Repositories
             _programs = new List<LotteryProgram>() { new LotteryProgram() { Id = 1, ProgramName = "program1" }, new LotteryProgram() { Id = 2, ProgramName = "program2" } };
 
 
-            var _winners = new List<LotteryWinner>{
+            _winners = new List<LotteryWinner>{
                new LotteryWinner() { Id = 1, Name = "John", LotteryProgram = _programs.First() }, new LotteryWinner() { Id = 2, Name = "Paul", LotteryProgram = _programs.First() }
             }.AsQueryable();
             var mockSet = Substitute.For<DbSet<LotteryWinner>, IQueryable<LotteryWinner>>();
@@ -46,7 +47,7 @@ namespace LotteryResultViewer.Tests.Repositories
         public async Task GetAllWinners()
         {
             var result=await _lotterWinnersRepository.FindByProgramId(1);
-            result.Count().Should().Be(2);
+            result.Count().Should().Be(_winners.Count());
         }
 
 
