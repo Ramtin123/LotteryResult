@@ -16,29 +16,24 @@ namespace LotteryResultViewer.Tests.Repositories
     [TestClass]
     public class LotterWinnersRepositoryTests
     {
-        private ILotteryResultContext _lotteryResultContext;
+        private ILotteryResultContext mockContext;
         private LotterWinnersRepository _lotterWinnersRepository;
         private List<LotteryProgram> _programs;
         private IQueryable<LotteryWinner> _winners;
         [TestInitialize()]
         public void TestInitialize()
         {
-            _lotteryResultContext = Substitute.For<ILotteryResultContext>();
-            _lotterWinnersRepository = new LotterWinnersRepository(_lotteryResultContext);
             _programs = new List<LotteryProgram>() { new LotteryProgram() { Id = 1, ProgramName = "program1" }, new LotteryProgram() { Id = 2, ProgramName = "program2" } };
-
-
             _winners = new List<LotteryWinner>{
-               new LotteryWinner() { Id = 1, Name = "John", LotteryProgram = _programs.First() }, new LotteryWinner() { Id = 2, Name = "Paul", LotteryProgram = _programs.First() }
+               new LotteryWinner() { Id = 1, Name = "John", LotteryProgram = _programs.First() }, new LotteryWinner() { Id = 2, Name = "Paul", LotteryProgram = _programs.First() },new LotteryWinner() { Id = 3, Name = "Ramtin", LotteryProgram = _programs.Find(f=>f.Id.Equals(2)) }
             }.AsQueryable();
             var mockSet = Substitute.For<DbSet<LotteryWinner>, IQueryable<LotteryWinner>>();
             ((IQueryable<LotteryWinner>)mockSet).Provider.Returns(_winners.Provider);
             ((IQueryable<LotteryWinner>)mockSet).Expression.Returns(_winners.Expression);
             ((IQueryable<LotteryWinner>)mockSet).ElementType.Returns(_winners.ElementType);
             ((IQueryable<LotteryWinner>)mockSet).GetEnumerator().Returns(_winners.GetEnumerator());
-
-            // do the wiring between DbContext and DbSet
-            var mockContext = Substitute.For<ILotteryResultContext>();
+            
+            mockContext = Substitute.For<ILotteryResultContext>();
             mockContext.LotteryWinners.Returns(mockSet);
             _lotterWinnersRepository = new LotterWinnersRepository(mockContext);
 
@@ -47,7 +42,23 @@ namespace LotteryResultViewer.Tests.Repositories
         public async Task GetAllWinners()
         {
             var result=await _lotterWinnersRepository.FindByProgramId(1);
-            result.Count().Should().Be(_winners.Count());
+            result.Count().Should().Be(2);
+        }
+        [TestMethod]
+        public async Task AddingAWinner()
+        {
+            var winner = new LotteryWinner(){Name="Ramtin",LotteryProgram=_programs.First() };
+            await _lotterWinnersRepository.AddOrUpdate(winner);
+            mockContext.Received().SetAdd(Arg.Is(winner));
+            mockContext.Received().SaveChanges();
+        }
+        [TestMethod]
+        public async Task UpdatingAWinner()
+        {
+            var winner = new LotteryWinner() {Id=1, Name = "Ramtin", LotteryProgram = _programs.First() };
+            await _lotterWinnersRepository.AddOrUpdate(winner);
+            mockContext.Received().SetModified(Arg.Is(winner));
+            mockContext.Received().SaveChanges();
         }
 
 
