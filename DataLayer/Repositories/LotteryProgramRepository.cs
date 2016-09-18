@@ -27,7 +27,7 @@ namespace LotteryResultViewer.DataLayer.Repositories
         
         public async Task<IList<LotteryProgram>> GetAll()
         {
-            return await _context.LotteryPrograms.ToListAsync();
+            return await Task.FromResult(_context.LotteryPrograms.ToList());
         }
 
 
